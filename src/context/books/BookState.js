@@ -52,7 +52,7 @@ const BookState = props => {
   // Get books for collection
   const getBooks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/books');
+      const res = await axios.get('https://api.abl.addison.codes/.netlify/functions/api/books');
       dispatch({
         type: GET_BOOKS,
         payload: res.data,
@@ -71,7 +71,7 @@ const BookState = props => {
       },
     };
     try {
-      const res = await axios.post('http://localhost:5000/api/books', book, config);
+      const res = await axios.post('https://api.abl.addison.codes/.netlify/functions/api/books', book, config);
       dispatch({ type: ADD_BOOK, payload: res.data });
     } catch (err) {
       console.log(err);
@@ -87,7 +87,7 @@ const BookState = props => {
     };
     try {
       if (book.status === 'Reading' || book.status === 'Dropped' || book.status === 'Finished' || book.status === 'Want to read') {
-        const res = await axios.put(`http://localhost:5000/api/books/${book._id}`, book, config);
+        const res = await axios.put(`https://api.abl.addison.codes/.netlify/functions/api/books/${book._id}`, book, config);
         dispatch({
           type: UPDATE_BOOK,
           payload: res.data,
@@ -104,7 +104,7 @@ const BookState = props => {
   // Delete book from collection
   const deleteBook = async id => {
     try {
-      await axios.delete(`http://localhost:5000/api/books/${id}`);
+      await axios.delete(`https://api.abl.addison.codes/.netlify/functions/api/books/${id}`);
       dispatch({
         type: DELETE_BOOK,
         payload: id,
